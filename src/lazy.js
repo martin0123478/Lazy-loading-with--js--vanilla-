@@ -3,15 +3,19 @@ const isIntersecting = (entry) =>{
   return entry.isIntersecting // true
 }
 
-const accion = (entry) => {
-  const nodo = entry.target
-  console.log('holis')
-  observador.unobserve(nodo);
+const loadImage = (entry) => {
+  const container = entry.target
+  const imagen = container.firstChild;
+  const url = imagen.dataset.src;
+  //cargue imagen
+  imagen.src = url
+  
+  observador.unobserve(container);
 }
 const observador = new IntersectionObserver((entries) => {
   entries
   .filter(isIntersecting)
-  .forEach(accion)
+  .forEach(loadImage)
 })
 export const registerImage = (imagen) =>{
   //IntersectionObservador -> observe (imagen)
