@@ -5,6 +5,8 @@
 
 //crear imagen
 //agregar #imagen
+const maximo = 122;
+const minimo = 1;
 const random = () => Math.floor( Math.random() * (maximo - minimo) ) + minimo
  
 const createImageNode = () =>{
@@ -13,11 +15,17 @@ const createImageNode = () =>{
   const image = document.createElement('img')
   image.className = "mx-auto"
   image.width = '320'
-  image.src = "https://randomfox.ca/images/2.jpg"
+  image.src =` https://randomfox.ca/images/${random()}.jpg`
   container.appendChild(image)
   return container;
 }
 
 const nuevaImagen = createImageNode();
-const mountNode =  document.getElementById('images')
-mountNode.appendChild(nuevaImagen)
+const mountNode =  document.getElementById('images');
+const addButon = document.querySelector('button');
+const addImage = () => {
+  const newImage = createImageNode();
+  mountNode.appendChild(newImage)
+}
+addButon.addEventListener('click',addImage)
+
